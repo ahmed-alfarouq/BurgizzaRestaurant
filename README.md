@@ -1,47 +1,53 @@
-# Burgizza Restaurant Site
-### I have used
-### {
-###   React JS & Hooks
-###   React-Router-Dom
-###   Redux
-###   Redux-Persist
-###   React-Icons
-###   Formik & Yup
-###   Swiper JS
-###   SASS
-### }
+# Burgizza Restaurant
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+> Burgizza Restaurant is a site that provides all kinds of burgers and pizzas
 
-## Getting Started
+> |Big Screen       |Small Screen|
+> |--------------|--------------|
+> |![screenshot](./screenshot.png)|![screenshot2](./screenshot-sm-screen.png)|
 
-First, run the development server:
+> you can find your favorite kind and try it
+## Built With
+  - NextJS
+  - Redux
+  - Redux-Persist
+  - React-Icons
+  - Formik & Yup
+  - Axios
+  - Custom API
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Live Demo
+[Live-demo](https://burgizza.pages.dev/)
+### Prerequisites
+  - #### Knowledge of these technologies
+    - NextJS
+    - Redux
+### Setup
+  * Open your command
+  * Type "git clone https://github.com/ahmed-al-farouq/BurgizzaRestaurant.git"
+  * npm i
+  * npm run build
+  * npm run start
+### Run the app
+  * npm run start
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Deployment
+  * npm run build
+## Author
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+:bearded_person: **Ahmed Al-Farouq**
+  - Github: [@Ahmed-Alfarouq](https://github.com/ahmed-al-farouq)
+  - LinkedIn: [LinkedIn](https://www.linkedin.com/in/ahmed-al-farouq/)
+  - Twitter: [@twitter](https://twitter.com/ahmed_al_farouq)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## 🤝 Contributing
 
-## Learn More
+Contributions, issues, and feature requests are welcome!
 
-To learn more about Next.js, take a look at the following resources:
+Feel free to check the [issues page](../../issues/).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Show your support
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Give a ⭐️ if you like this project!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
