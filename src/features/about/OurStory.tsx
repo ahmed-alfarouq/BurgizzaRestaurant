@@ -1,11 +1,11 @@
-import Link from "next/link";
 import styles from "@/styles/About.module.css";
+import Link from "next/link";
 
 const OurStory = () => {
   return (
     <section className={styles.our_story}>
       <div className={styles.left_section}>
-        <img src="/our_story.jpg" alt="our_story" />
+        <img src="/our_story.jpg" alt="our_story" aria-hidden="true" />
       </div>
       <div className={styles.right_section}>
         <h2>our story</h2>

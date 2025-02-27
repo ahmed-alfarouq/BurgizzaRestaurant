@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import StoreProvider from "@/providers/StoreProvider";
 import Head from "next/head";
+
+import StoreProvider from "@/providers/StoreProvider";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
     default: "Burgizza",
-    template: "Burgizza |",
+    template: "Burgizza | %s",
   },
 };
 
@@ -32,7 +34,10 @@ export default function RootLayout({
         />
       </Head>
       <body>
-        <StoreProvider>{children}</StoreProvider>
+        <StoreProvider>
+          {children}
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );

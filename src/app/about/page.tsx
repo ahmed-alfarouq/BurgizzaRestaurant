@@ -1,9 +1,10 @@
 import styles from "@/styles/About.module.css";
 // Import Components
-import MainBanel from "@/components/Common/MainBanel";
-import Reservations from "@/components/Common/Reservations";
-import OurStory from "@/components/About/OurStory";
-import OurTeam from "@/components/About/OurTeam";
+import MainBanel from "@/components/MainBanner";
+import Reservations from "@/components/Reservations";
+import OurStory from "@/features/about/OurStory";
+import OurTeam from "@/features/about/OurTeam";
+
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 
 const About = () => {
   return (
-    <section className={styles.about}>
+    <main className={styles.about}>
       <MainBanel
         h1Text="About Us"
         pText="Read our Story, How we started and about the Team"
@@ -21,7 +22,7 @@ const About = () => {
       <OurStory />
       <OurTeam />
       <Reservations />
-    </section>
+    </main>
   );
 };
 

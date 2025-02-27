@@ -1,4 +1,4 @@
-import styles from "@/styles/features/MainBanner.module.css";
+import styles from "@/styles/components/MainBanner.module.css";
 import Link from "next/link";
 
 type MainBannerProps = {
