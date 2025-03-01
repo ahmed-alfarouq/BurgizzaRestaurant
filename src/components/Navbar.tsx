@@ -2,11 +2,10 @@
 import styles from "@/styles/features/Navbar.module.css";
 
 import Link from "next/link";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAppSelector } from "@/lib/hooks";
 
 // Import Icons
-import { AiFillCloseCircle } from "react-icons/ai";
 import { RiShoppingCartFill } from "react-icons/ri";
 
 // Import Components
@@ -22,13 +21,16 @@ const Navbar = () => {
 
   const cartRef = useRef<HTMLDivElement>(null);
 
-  const toggleOpenClass = () => {
-    setOpenMenu((prev) => !prev);
+  const toggleNavbar = () => {
+    if (isMobile) {
+      setOpenMenu((prev) => !prev);
+    }
   };
 
   const toggleCart = () => {
     cartRef.current?.classList.toggle("open");
   };
+
   const numOfPizzaInCart = useAppSelector(
     (state) => state.pizza.numOfPizzaInCart
   );
@@ -36,7 +38,7 @@ const Navbar = () => {
     (state) => state.burger.numOfBurgerInCart
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (window.innerWidth <= 991.99) {
       setIsMobel(true);
     }
@@ -45,63 +47,74 @@ const Navbar = () => {
   return (
     <header className={styles.navbar}>
       <div className={styles.main_header_bar}>
-        <div className={styles.social_media}>
-          <Link href="#">
-            <BsTwitter />
-          </Link>
-          <Link href="#">
-            <FaFacebook />
-          </Link>
-          <Link href="#">
-            <BsInstagram />
-          </Link>
-        </div>
+        {!isMobile && (
+          <div className={styles.social_media}>
+            <Link href="#">
+              <BsTwitter />
+            </Link>
+            <Link href="#">
+              <FaFacebook />
+            </Link>
+            <Link href="#">
+              <BsInstagram />
+            </Link>
+          </div>
+        )}
         <span className={styles.logo}>Burgizza</span>
-        <Link href="/login" className={styles.login}>
-          Log In
-        </Link>
+        {!isMobile && (
+          <Link href="/login" className={styles.login}>
+            Log In
+          </Link>
+        )}
       </div>
       <nav className={`${styles.collapse_menu} ${openMenu && styles.open}`}>
-        <AiFillCloseCircle
-          className={styles.close_menu}
-          onClick={toggleOpenClass}
-        />
         <ul>
-          <li onClick={toggleOpenClass}>
+          <li onClick={toggleNavbar}>
             <Link href="/">Home</Link>
           </li>
-          <li onClick={toggleOpenClass}>
+          <li onClick={toggleNavbar}>
             <Link href="/menu">Our Menu</Link>
           </li>
-          <li onClick={toggleOpenClass}>
+          <li onClick={toggleNavbar}>
             <Link href="/about">About</Link>
           </li>
-          <li onClick={toggleOpenClass}>
+          <li onClick={toggleNavbar}>
             <Link href="/offers">Offers</Link>
           </li>
-          <li onClick={toggleOpenClass}>
+          <li onClick={toggleNavbar}>
             <Link href="/contact">Contact</Link>
           </li>
-          {isMobile ?? (
-            <li className={styles.cart_icon}>
-              <RiShoppingCartFill onClick={toggleCart} />
-              {numOfBurgerInCart + numOfPizzaInCart > 0 && (
-                <span onClick={toggleCart}>
-                  {numOfBurgerInCart + numOfPizzaInCart}
-                </span>
-              )}
-            </li>
-          )}
+
+          <li className={styles.cart_icon}>
+            <button type="button" onClick={toggleCart}>
+              <span className="sr-only">Cart</span>
+              <RiShoppingCartFill />
+            </button>
+
+            {numOfBurgerInCart + numOfPizzaInCart === 0 && (
+              <span
+                onClick={toggleCart}
+                aria-label={`Cart contains ${
+                  numOfBurgerInCart + numOfPizzaInCart
+                } of items`}
+                aria-live="polite"
+              >
+                {numOfBurgerInCart + numOfPizzaInCart}
+              </span>
+            )}
+          </li>
         </ul>
       </nav>
-      <button
-        type="button"
-        className={`${styles.toggle_icon} ${openMenu && styles.open}`}
-        onClick={toggleOpenClass}
-      >
-        <span className="sr-only">Open Menu</span>
-        {!openMenu ? <IoMenu /> : <CgClose />}
-      </button>
+      {isMobile && (
+        <button
+          type="button"
+          className={`${styles.toggle_icon} ${openMenu && styles.open}`}
+          onClick={toggleNavbar}
+        >
+          <span className="sr-only">Open Menu</span>
+          {!openMenu ? <IoMenu /> : <CgClose />}
+        </button>
+      )}
       {/* <Cart toggleCart={toggleCart} cartRef={cartRef} /> */}
     </header>
   );

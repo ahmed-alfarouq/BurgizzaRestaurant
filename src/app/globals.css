@@ -73,6 +73,14 @@ ul {
   list-style-type: none;
 }
 
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+}
+
 .container {
   min-width: 100vw;
   padding: 0 0.5rem;
@@ -85,7 +93,7 @@ ul {
 
 .sr-only {
   border: 0;
-  clip: rect(1px, 1px, 1px, 1px); 
+  clip: rect(1px, 1px, 1px, 1px);
   -webkit-clip-path: inset(50%);
   clip-path: inset(50%);
   height: 1px;
