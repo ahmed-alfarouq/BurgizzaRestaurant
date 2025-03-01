@@ -8,7 +8,7 @@ const Features = () => {
       <Image src="/pizza.webp" alt="" width={300} height={300} />
       <div className={styles.cards}>
         {featuresData.map((feature) => (
-          <div className={styles.features_card}>
+          <div className={styles.features_card} key={feature.title}>
             <div className={styles.features_img}>
               <Image src={feature.image} alt="" width={200} height={200} />
             </div>
