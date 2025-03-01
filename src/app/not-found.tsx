@@ -10,6 +10,11 @@ const notFoundLinks = [
     url: "/",
     type: "primary",
   },
+  {
+    title: "Check our menu",
+    url: "/our-menu",
+    type: "secondary",
+  },
 ];
 
 const NotFound = () => {
