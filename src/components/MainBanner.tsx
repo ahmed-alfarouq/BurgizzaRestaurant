@@ -25,6 +25,7 @@ const MainBanner = ({ title, description, bgUrl, links }: MainBannerProps) => {
       <div className={styles.btns}>
         {links?.map((link) => (
           <Link
+            key={link.title}
             href={link.url}
             className={`${styles.btn} ${styles[link.type]}`}
           >

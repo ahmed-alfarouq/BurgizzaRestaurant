@@ -1,6 +1,6 @@
 import styles from "@/styles/Login.module.css";
-import MainBanel from "@/components/Common/MainBanel";
-import LogInForm from "@/components/LogIn/LogInForm";
+import MainBanner from "@/components/MainBanner";
+// import LogInForm from "@/components/LogIn/LogInForm";
 
 export const metadata = {
   title: "Login",
@@ -10,12 +10,12 @@ const LogIn = () => {
   return (
     <>
       <section className={styles.log_in}>
-        <MainBanel
-          h1Text="Log In"
-          pText="join us, and order what you like to eat today"
-          bg_url="/login_main_banel.jpg"
+        <MainBanner
+          title="Log In"
+          description="join us, and order what you like to eat today"
+          bgUrl="/login_main_banel.jpg"
         />
-        <LogInForm />
+        {/* <LogInForm /> */}
       </section>
     </>
   );

@@ -1,9 +1,11 @@
-import type { Metadata } from "next";
 import "./globals.css";
 import Head from "next/head";
 
 import StoreProvider from "@/providers/StoreProvider";
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
@@ -35,6 +37,7 @@ export default function RootLayout({
       </Head>
       <body>
         <StoreProvider>
+          <Navbar />
           {children}
           <Footer />
         </StoreProvider>

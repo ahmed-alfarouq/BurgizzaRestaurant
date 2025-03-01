@@ -4,7 +4,13 @@ import { fetchPizza } from "./pizzaAPI";
 interface InitialState {
   pizza: { id: string }[];
   pizzaErro: string;
-  pizzaCart: { id: string; quantity: number }[];
+  pizzaCart: {
+    id: string;
+    name: string;
+    image: string;
+    price: number;
+    quantity: number;
+  }[];
   numOfPizzaInCart: number;
 }
 

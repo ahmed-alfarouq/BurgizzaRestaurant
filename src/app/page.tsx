@@ -28,10 +28,9 @@ export default function Home() {
         links={mainBannerLinks}
       />
       <Features />
-      <BurgizaaMenu />
+      {/* <BurgizaaMenu /> */}
 
-      <Reservations />
-      
+      {/* <Reservations /> */}
     </main>
   );
 }

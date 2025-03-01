@@ -9,12 +9,18 @@ import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { removeBurgerFromCart } from "@/lib/features/burger/burgerSlice";
 import { removePizzaFromCart } from "@/lib/features/pizza/pizzaSlice";
 
-const Cart = ({ toggleCart, cartRef }) => {
-  const burgerCart = useAppSelector((state) => state.Burger.burgerCart);
-  let burger = [];
-  const pizzaCart = useAppSelector((state) => state.Pizza.pizzaCart);
-  let pizza = [];
+const Cart = ({
+  toggleCart,
+  cartRef,
+}: {
+  toggleCart: () => void;
+  cartRef: React.RefObject<HTMLDivElement | null>;
+}) => {
+  const burgerCart = useAppSelector((state) => state.burger.burgerCart);
+  const pizzaCart = useAppSelector((state) => state.pizza.pizzaCart);
   const dispatch = useAppDispatch();
+  let burger = [];
+  let pizza = [];
   const prices = [];
   let totalPrice;
 
@@ -97,17 +103,13 @@ const Cart = ({ toggleCart, cartRef }) => {
       {burger.length || pizza.length ? (
         <div className="cart-footer">
           <span>{`Total Price: ${totalPrice}$`}</span>
-          <Link href="/checkout">
-            <a className="check-out" onClick={toggleCart}>
-              Check Out
-            </a>
+          <Link href="/checkout" className="check-out" onClick={toggleCart}>
+            Check Out
           </Link>
         </div>
       ) : (
-        <Link href="/menu">
-          <a className="our-menu" onClick={toggleCart}>
-            Our Menu
-          </a>
+        <Link href="/menu" className="our-menu" onClick={toggleCart}>
+          Our Menu
         </Link>
       )}
     </div>

@@ -4,7 +4,13 @@ import { fetchBurgers } from "./burgerAPI";
 interface InitialState {
   burger: { id: string }[];
   burgerError: string;
-  burgerCart: { id: string; quantity: number }[];
+  burgerCart: {
+    id: string;
+    name: string;
+    image: string;
+    price: number;
+    quantity: number;
+  }[];
   numOfBurgerInCart: number;
 }
 
