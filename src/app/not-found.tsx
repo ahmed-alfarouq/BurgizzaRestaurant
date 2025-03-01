@@ -1,29 +1,25 @@
-import Link from "next/link";
-
 import MainBanner from "@/components/MainBanner";
-
-import { TiDelete } from "react-icons/ti";
 
 export const metadata = {
   title: "Not Found",
 };
 
+const notFoundLinks = [
+  {
+    title: "Go to home",
+    url: "/",
+    type: "primary",
+  },
+];
+
 const NotFound = () => {
   return (
-    <>
-      <MainBanner
-        title="Wrong Direction"
-        description="Maybe Link Is corrupt"
-        bgUrl="/not_found_main_banel.jpg"
-      />
-      <section className="not_found">
-        <TiDelete />
-        <h1>Page Is Not Found</h1>
-        <Link href="/" className="home_btn">
-          Home
-        </Link>
-      </section>
-    </>
+    <MainBanner
+      title="Wrong Direction"
+      description="Maybe link is corrupt!"
+      bgUrl="/not_found_main_banel.jpg"
+      links={notFoundLinks}
+    />
   );
 };
 
