@@ -1,23 +1,17 @@
-import Head from "next/head";
-import styles from "../styles/Checkout.module.css";
-import MainBanel from "../../components/MainBanner";
-import CheckOutTable from "../../components/checkout/CheckOutTable";
+import styles from "@/styles/Checkout.module.css";
+import MainBanner from "@/components/MainBanner";
+import CheckOutTable from "@/components/checkout/CheckOutTable";
 
 const CheckOut = () => {
   return (
-    <>
-      <Head>
-        <title>Burgizza | Check Out</title>
-      </Head>
-      <section className={styles.checkout}>
-        <MainBanel
-          h1Text="Check Out"
-          pText="We Hope You Enjoy Our Services"
-          bg_url="/checkout_main_banel.jpg"
-        />
-        <CheckOutTable />
-      </section>
-    </>
+    <section className={styles.checkout}>
+      <MainBanner
+        title="Check Out"
+        description="We Hope You Enjoy Our Services"
+        bgUrl="/checkout_main_banel.jpg"
+      />
+      <CheckOutTable />
+    </section>
   );
 };
 
