@@ -1,5 +1,4 @@
 import styles from "@/styles/features/Footer.module.css";
-import Link from "next/link";
 // Import Icons
 import {
   FaGooglePlus,
@@ -20,7 +19,7 @@ const Footer = () => {
           <h3 className={styles.subtitle}>About Us</h3>
           <p className={styles.description}>
             Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
+            industry. Lorem Ipsum has been the industry&apos;s standard dummy text
             ever since the 1500s,
           </p>
           <div className={styles.social_media}>

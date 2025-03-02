@@ -1,5 +1,6 @@
 import teamData from "@/staticData/teamData";
 import styles from "@/styles/About.module.css";
+import Image from "next/image";
 
 const OurTeam = () => {
   return (
@@ -12,7 +13,7 @@ const OurTeam = () => {
         {teamData.map((member) => (
           <div className={styles.card} key={member.id}>
             <div className={styles.image_container}>
-              <img src={member.image} alt="" />
+              <Image src={member.image} alt="" width={100} height={100} />
             </div>
             <div className={styles.card_body}>
               <h2>{member.name}</h2>

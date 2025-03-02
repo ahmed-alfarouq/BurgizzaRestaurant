@@ -15,9 +15,9 @@ const About = () => {
   return (
     <main className={styles.about}>
       <MainBanel
-        h1Text="About Us"
-        pText="Read our Story, How we started and about the Team"
-        bg_url="/about_main_banel.jpg"
+        title="About Us"
+        description="Read our Story, How we started and about the Team"
+        bgUrl="/about_main_banel.jpg"
       />
       <OurStory />
       <OurTeam />

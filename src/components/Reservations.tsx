@@ -2,7 +2,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-let initialValues = {
+const initialValues = {
   name: "",
   date: "",
   time: "",
@@ -34,15 +34,15 @@ const validate = Yup.object({
     .matches(/[0-9]{11}\[^a-Z]/gi, "It Can Contain Only Numbers")
     .required("Phone Is Required"),
 });
-const onSubmit = (values) => {
-  console.log("Your" + " " + values);
-};
+// const onSubmit = (values) => {
+//   console.log("Your" + " " + values);
+// };
 const Reservations = () => {
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validate}
-      onSubmit={onSubmit}
+      onSubmit={() => {}}
     >
       <section className="reservations">
         <div className="header">

@@ -1,8 +1,8 @@
 import styles from "@/styles/Home.module.css";
 
-import BurgizaaMenu from "@/components/home/BurgizzaMenu";
+// import BurgizaaMenu from "@/components/home/BurgizzaMenu";
 import Features from "@/features/home/Features";
-import Reservations from "@/components/Reservations";
+// import Reservations from "@/components/Reservations";
 import MainBanner from "@/components/MainBanner";
 
 const mainBannerLinks = [
