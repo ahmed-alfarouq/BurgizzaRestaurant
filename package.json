@@ -7,10 +7,6 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "engines": {
-    "node": ">=20",
-    "npm": ">=10"
-  },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.0",
     "axios": "^1.7.9",
