@@ -9,7 +9,7 @@ export const fetchBurgers = createAsyncThunk(
     try {
       const res = await axios.get(`${BASE_API}/burgers`);
       return res.data;
-    } catch (error) {
+    } catch {
       thunkAPI.rejectWithValue("Something went wrong while fetching burgers");
     }
   }

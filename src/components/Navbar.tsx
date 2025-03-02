@@ -30,12 +30,7 @@ const Navbar = () => {
     setIsCartOpened((prev) => !prev);
   };
 
-  const numOfPizzaInCart = useAppSelector(
-    (state) => state.pizza.numOfPizzaInCart
-  );
-  const numOfBurgerInCart = useAppSelector(
-    (state) => state.burger.numOfBurgerInCart
-  );
+  const cart = useAppSelector((state) => state.cart.cart);
 
   useLayoutEffect(() => {
     if (window.innerWidth <= 991.99) {
@@ -89,16 +84,13 @@ const Navbar = () => {
               <span className="sr-only">Cart</span>
               <RiShoppingCartFill />
             </button>
-
-            {numOfBurgerInCart + numOfPizzaInCart === 0 && (
+            {cart.length > 0 && (
               <span
                 onClick={toggleCart}
-                aria-label={`Cart contains ${
-                  numOfBurgerInCart + numOfPizzaInCart
-                } of items`}
+                aria-label={`Cart contains ${cart.length} of items`}
                 aria-live="polite"
               >
-                {numOfBurgerInCart + numOfPizzaInCart}
+                {cart.length}
               </span>
             )}
           </li>

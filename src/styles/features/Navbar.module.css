@@ -143,6 +143,7 @@
 
   .cart_icon button {
     color: #000;
+    font-size: 20px;
   }
 
   .cart_icon button:hover {
@@ -150,8 +151,11 @@
   }
 
   .cart_icon span {
+    cursor: pointer;
     top: 8px;
     left: -8px;
+    font-size: 12px;
+    padding: 3px 7px;
   }
 
   .toggle_icon {

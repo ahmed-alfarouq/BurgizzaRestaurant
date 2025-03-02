@@ -2,16 +2,20 @@
 import styles from "@/styles/features/Cart.module.css";
 
 import Link from "next/link";
+import Image from "next/image";
+
 // Import Icons
 import { AiFillCloseCircle } from "react-icons/ai";
-import { FaTrash } from "react-icons/fa";
 import { BiCommentError } from "react-icons/bi";
+
 // Redux & Actions
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { removeBurgerFromCart } from "@/lib/features/burger/burgerSlice";
-import { removePizzaFromCart } from "@/lib/features/pizza/pizzaSlice";
 import { useMemo } from "react";
 import IncrementDecrementButton from "./IncrementDecrementButton";
+import {
+  decreaseItemQuantity,
+  increaseItemQuantity,
+} from "@/lib/features/cart/cartSlice";
 
 const Cart = ({
   toggleCart,
@@ -20,84 +24,22 @@ const Cart = ({
   toggleCart: () => void;
   opened: boolean;
 }) => {
-  const burgerCart = useAppSelector((state) => state.burger.burgerCart);
-  // const pizzaCart = useAppSelector((state) => state.pizza.pizzaCart);
+  const cart = useAppSelector((state) => state.cart.cart);
   const dispatch = useAppDispatch();
-  let burger = [];
-  let pizza = [];
-  const increaseQuantity = () => {};
-  const decreaseQuantity = () => {};
+
+  const increaseQuantity = (id: string) => {
+    dispatch(increaseItemQuantity({ id }));
+  };
+  const decreaseQuantity = (id: string) => {
+    dispatch(decreaseItemQuantity({ id }));
+  };
+
   const totalPrice = useMemo(() => {
-    return burgerCart.reduce(
+    return cart.reduce(
       (prevResult, item) => item.quantity * item.price + prevResult,
       0
     );
-  }, []);
-
-  // Loop Burger Items In Cart
-  if (burgerCart.length > 0) {
-    for (let i = 0; i < burgerCart.length; i++) {
-      burger.push(
-        <li className={styles.item} key={burgerCart[i].id}>
-          <div className={styles.image_container}>
-            <img src={burgerCart[i].image} alt={burgerCart[i].name} />
-          </div>
-          <div className={styles.item_details}>
-            <h2 className={styles.title}>{burgerCart[i].name}</h2>
-            <button
-              type="button"
-              className={styles.remove_from_cart}
-              onClick={() => dispatch(removeBurgerFromCart(burgerCart[i]))}
-            >
-              <span className="sr-only">Remove item from cart</span>
-              <FaTrash aria-hidden="true" />
-            </button>
-            <div className={styles.item_footer}>
-              <IncrementDecrementButton
-                increase={increaseQuantity}
-                decrease={decreaseQuantity}
-                quantity={burgerCart[i].quantity}
-                itemName={burgerCart[i].name}
-              />
-              <span
-                aria-label={`total amount is ${
-                  burgerCart[i].quantity * burgerCart[i].price
-                }`}
-              >
-                ${burgerCart[i].quantity * burgerCart[i].price}
-              </span>
-            </div>
-          </div>
-        </li>
-      );
-    }
-  }
-
-  // Loop Pizza Items In Cart
-  // if (pizzaCart.length > 0) {
-  //   for (let i = 0; i < pizzaCart.length; i++) {
-  //     prices.push(pizzaCart[i].price * pizzaCart[i].quantity);
-  //     pizza.push(
-  //       <li className={styles.item} key={pizzaCart[i].id}>
-  //         <div className="image-container">
-  //           <img src={pizzaCart[i].image} alt={pizzaCart[i].name} />
-  //           <span>{pizzaCart[i].quantity}</span>
-  //         </div>
-  //         <div className="item-details">
-  //           <h3>{pizzaCart[i].name}</h3>
-  //           <h4>
-  //             {pizzaCart[i].quantity} * {pizzaCart[i].price}$
-  //           </h4>
-  //           <h5>Total: {pizzaCart[i].quantity * pizzaCart[i].price}$</h5>
-  //           <FaTrashRestore
-  //             className="delete"
-  //             onClick={() => dispatch(removePizzaFromCart(pizzaCart[i]))}
-  //           />
-  //         </div>
-  //       </li>
-  //     );
-  //   }
-  // }
+  }, [cart]);
 
   return (
     <div className={`${styles.cart} ${opened && styles.open}`}>
@@ -106,34 +48,63 @@ const Cart = ({
         <AiFillCloseCircle aria-hidden="true" />
       </button>
 
-      {burger.length || pizza.length ? (
-        <ul className={styles.list_of_items}>
-          {burger}
-          {/* {pizza} */}
-        </ul>
+      {cart.length ? (
+        <>
+          <ul className={styles.list_of_items}>
+            {cart.map((cartItem) => (
+              <li className={styles.item} key={cartItem.id}>
+                <div className={styles.image_container}>
+                  <Image
+                    src={cartItem.image}
+                    alt={cartItem.title}
+                    width={150}
+                    height={100}
+                  />
+                </div>
+                <div className={styles.item_details}>
+                  <h2 className={styles.title}>{cartItem.title}</h2>
+                  <div className={styles.item_footer}>
+                    <IncrementDecrementButton
+                      increase={() => increaseQuantity(cartItem.id)}
+                      decrease={() => decreaseQuantity(cartItem.id)}
+                      quantity={cartItem.quantity}
+                      itemName={cartItem.title}
+                    />
+                    <span
+                      aria-label={`total amount is ${
+                        cartItem.quantity * cartItem.price
+                      }`}
+                    >
+                      ${cartItem.quantity * cartItem.price}
+                    </span>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <div className={styles.cart_footer}>
+            <span>{`Total Price: ${totalPrice}$`}</span>
+            <Link
+              href="/checkout"
+              className={styles.checkout}
+              onClick={toggleCart}
+            >
+              Check Out
+            </Link>
+          </div>
+        </>
       ) : (
-        <ul className={styles.list_of_items}>
-          <li className={styles.empty_cart}>
+        <>
+          <div className={styles.empty_cart}>
             <BiCommentError />
             <h2>Cart Is Empty</h2>
-          </li>
-        </ul>
-      )}
-      {burger.length || pizza.length ? (
-        <div className={styles.cart_footer}>
-          <span>{`Total Price: ${totalPrice}$`}</span>
-          <Link
-            href="/checkout"
-            className={styles.checkout}
-            onClick={toggleCart}
-          >
-            Check Out
-          </Link>
-        </div>
-      ) : (
-        <Link href="/menu" className={styles.our_menu} onClick={toggleCart}>
-          Our Menu
-        </Link>
+          </div>
+          <div className={styles.cart_footer}>
+            <Link href="/menu" className={styles.our_menu} onClick={toggleCart}>
+              Our Menu
+            </Link>
+          </div>
+        </>
       )}
     </div>
   );

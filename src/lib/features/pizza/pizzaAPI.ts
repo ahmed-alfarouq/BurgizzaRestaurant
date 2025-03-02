@@ -9,7 +9,7 @@ export const fetchPizza = createAsyncThunk(
     try {
       const res = await axios.get(`${BASE_API}/pizza`);
       return res.data;
-    } catch (error) {
+    } catch {
       thunkAPI.rejectWithValue("Something went wrong while fetching pizza");
     }
   }
