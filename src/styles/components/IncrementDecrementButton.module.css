@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.increment_btn,
+.decrement_btn {
+  border: 1px solid #eaeaea;
+  color: #415161;
+  font-size: 18px;
+  font-weight: 400;
+  outline: 0;
+  padding: 5px;
+  text-align: center;
+  width: 38px;
+}
+
+.increment_btn {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.decrement_btn {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.quantity {
+  border: 1px solid #eaeaea;
+  color: #415161;
+  font-size: 18px;
+  font-weight: 400;
+  outline: 0;
+  padding: 5px;
+  text-align: center;
+  width: 38px;
+}

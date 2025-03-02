@@ -1,0 +1,139 @@
+.cart {
+  position: fixed;
+  top: 0;
+  right: 0;
+  transform: translateX(700px);
+  transition: 0.5s;
+  background-color: #fff;
+  min-height: 100vh;
+  min-width: 450px;
+  padding: 40px 20px;
+  z-index: 999;
+}
+
+.cart.open {
+  transform: translateX(0);
+}
+
+.cart .close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  transition: 0.2s;
+}
+
+.cart .close:hover {
+  color: #e4032f;
+}
+
+.list_of_items {
+  padding: 0;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.list_of_items .empty_cart {
+  display: block;
+  text-align: center;
+  align-self: flex-end;
+}
+
+.list_of_items .empty_cart svg {
+  margin: 5px auto;
+  font-size: 60px;
+  color: #e4032f;
+}
+
+.list_of_items .item {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  position: relative;
+}
+
+.list_of_items .item .image_container {
+  width: 140px;
+}
+
+.list_of_items .item .image_container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.list_of_items .item .item_details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.list_of_items .item .item_details .title {
+  margin-top: 0;
+  text-transform: capitalize;
+  font-size: 20px;
+}
+
+.list_of_items .item .item_details .remove_from_cart {
+  position: absolute;
+  top: 7px;
+  right: 30px;
+  font-size: 16px;
+  transition: 0.2s;
+}
+
+.list_of_items .item .item_details .remove_from_cart:hover {
+  color: #c20329;
+}
+
+.list_of_items .item .item_footer {
+  display: flex;
+  align-items: center;
+  gap: 45px;
+}
+
+.cart .cart_footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+
+.cart .cart_footer span {
+  text-align: center;
+  font-size: 18px;
+  padding: 20px;
+  border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
+  width: 100%;
+}
+
+.cart .checkout,
+.cart .our_menu {
+  outline: none;
+  padding: 10px 22px;
+  margin: auto;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  min-width: 180px;
+  text-align: center;
+  font-size: 18px;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.cart .checkout:hover,
+.cart .our_menu:hover {
+  background: #c20329;
+  color: #fff;
+}
