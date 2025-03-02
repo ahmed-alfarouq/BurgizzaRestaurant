@@ -8,8 +8,8 @@
     "lint": "next lint"
   },
   "engines": {
-    "node": "^22.13.1",
-    "npm": "^11.1.0"
+    "node": "22.13.1",
+    "npm": "11.1.0"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.0",
