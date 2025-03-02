@@ -2,7 +2,7 @@
 import styles from "@/styles/features/Navbar.module.css";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { useAppSelector } from "@/lib/hooks";
 
 // Import Icons
@@ -18,8 +18,7 @@ import { CgClose } from "react-icons/cg";
 const Navbar = () => {
   const [isMobile, setIsMobel] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
-
-  const cartRef = useRef<HTMLDivElement>(null);
+  const [isCartOpened, setIsCartOpened] = useState(false);
 
   const toggleNavbar = () => {
     if (isMobile) {
@@ -28,7 +27,7 @@ const Navbar = () => {
   };
 
   const toggleCart = () => {
-    cartRef.current?.classList.toggle("open");
+    setIsCartOpened((prev) => !prev);
   };
 
   const numOfPizzaInCart = useAppSelector(
@@ -38,7 +37,7 @@ const Navbar = () => {
     (state) => state.burger.numOfBurgerInCart
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (window.innerWidth <= 991.99) {
       setIsMobel(true);
     }
@@ -115,7 +114,7 @@ const Navbar = () => {
           {!openMenu ? <IoMenu /> : <CgClose />}
         </button>
       )}
-      {/* <Cart toggleCart={toggleCart} cartRef={cartRef} /> */}
+      <Cart toggleCart={toggleCart} opened={isCartOpened} />
     </header>
   );
 };
