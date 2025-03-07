@@ -4,18 +4,22 @@ import styles from "@/styles/features/Navbar.module.css";
 import Link from "next/link";
 import { useLayoutEffect, useState } from "react";
 import { useAppSelector } from "@/lib/hooks";
+import { useSession } from "next-auth/react";
+import signupWithGoogle from "@/actions/signupWithGoogle";
 
 // Import Icons
 import { RiShoppingCartFill } from "react-icons/ri";
-
-// Import Components
-import Cart from "./Cart";
 import { IoMenu } from "react-icons/io5";
 import { BsInstagram, BsTwitter } from "react-icons/bs";
 import { FaFacebook } from "react-icons/fa";
 import { CgClose } from "react-icons/cg";
 
+// Import Components
+import Cart from "./Cart";
+
 const Navbar = () => {
+  const { data: session, status } = useSession();
+
   const [isMobile, setIsMobel] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const [isCartOpened, setIsCartOpened] = useState(false);
@@ -38,6 +42,8 @@ const Navbar = () => {
     }
   }, []);
 
+  if (status === "loading") return null;
+  console.log(session);
   return (
     <header className={styles.navbar}>
       <div className={styles.main_header_bar}>
@@ -56,9 +62,11 @@ const Navbar = () => {
         )}
         <span className={styles.logo}>Burgizza</span>
         {!isMobile && (
-          <Link href="/login" className={styles.login}>
-            Log In
-          </Link>
+          // <Link href="/login" className={styles.login}>
+          <button className={styles.login} onClick={signupWithGoogle}>
+            {session?.user ? "Log Out" : "Log In"}
+          </button>
+          // </Link>
         )}
       </div>
       <nav className={`${styles.collapse_menu} ${openMenu && styles.open}`}>
@@ -78,7 +86,11 @@ const Navbar = () => {
           <li onClick={toggleNavbar}>
             <Link href="/contact">Contact</Link>
           </li>
-
+          {isMobile && (
+            <li onClick={signupWithGoogle}>
+              {session?.user ? "Log Out" : "Log In"}
+            </li>
+          )}
           <li className={styles.cart_icon}>
             <button type="button" onClick={toggleCart}>
               <span className="sr-only">Cart</span>

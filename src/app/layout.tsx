@@ -6,6 +6,8 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
 import type { Metadata } from "next";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/auth";
 
 export const metadata: Metadata = {
   title: {
@@ -37,9 +39,11 @@ export default function RootLayout({
       </Head>
       <body>
         <StoreProvider>
-          <Navbar />
-          {children}
-          <Footer />
+          <SessionProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </SessionProvider>
         </StoreProvider>
       </body>
     </html>
