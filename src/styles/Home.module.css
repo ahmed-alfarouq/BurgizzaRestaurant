@@ -1,6 +1,3 @@
-
-
-
 /* Start Burgizza Menu*/
 .burgizza_menu {
   margin-bottom: 50px;
@@ -92,65 +89,3 @@
   margin-bottom: -3px;
 }
 /* End Burgizza Menu*/
-/* Start Can You Trust Us*/
-.features {
-  width: 100%;
-  padding: 20px 0px 35px;
-}
-
-.features .cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  align-items: center;
-  margin: 25px 0;
-}
-
-.features .cards .features_card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 5px;
-  width: 400px;
-  text-align: center;
-  transition: 0.3s;
-  margin: 10px auto;
-  padding: 0 0 20px 0;
-}
-
-.features .cards .features_card .features_img {
-  width: 220px;
-  height: 200px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.features .cards .features_card .features_img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.features .cards .features_card .features_card_content .page_header {
-  color: #e4032f;
-  font-size: 11px;
-}
-
-
-.features .cards .features_card .features_card_content p {
-  font-size: 18px;
-  color: #4a4a4a;
-  text-align: center;
-  margin: 0 25px 10px;
-}
-@media (min-width: 576.99px) and (max-width: 991.99px) {
-  .features .cards .features_card {
-    width: 350px;
-  }
-}
-@media (max-width: 576.99px) {
-  .features .cards .features_card {
-    width: 280px;
-  }
-}
-/* End Can You Trust Us*/

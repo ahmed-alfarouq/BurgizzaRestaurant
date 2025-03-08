@@ -1,6 +1,6 @@
+import styles from "@/styles/features/Feature.module.css";
 import Image from "next/image";
 import featuresData from "@/staticData/featuresData";
-import styles from "@/styles/Home.module.css";
 
 const Features = () => {
   return (
@@ -12,12 +12,8 @@ const Features = () => {
             <div className={styles.features_img}>
               <Image src={feature.image} alt="" width={200} height={200} />
             </div>
-            <div className={styles.features_card_content}>
-              <div className={styles.page_header}>
-                <h1>{feature.title}</h1>
-              </div>
-              <p>{feature.description}</p>
-            </div>
+            <h1 className={styles.title}>{feature.title}</h1>
+            <p className={styles.description}>{feature.description}</p>
           </div>
         ))}
       </div>
