@@ -4,8 +4,10 @@ import styles from "@/styles/features/Navbar.module.css";
 import Link from "next/link";
 import { useLayoutEffect, useState } from "react";
 import { useAppSelector } from "@/lib/hooks";
-import { useSession } from "next-auth/react";
+
+// Actions
 import signupWithGoogle from "@/actions/signupWithGoogle";
+import signout from "@/actions/signout";
 
 // Import Icons
 import { RiShoppingCartFill } from "react-icons/ri";
@@ -17,9 +19,7 @@ import { CgClose } from "react-icons/cg";
 // Import Components
 import Cart from "./Cart";
 
-const Navbar = () => {
-  const { data: session, status } = useSession();
-
+const Navbar = ({ loggedIn }: { loggedIn: boolean }) => {
   const [isMobile, setIsMobel] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const [isCartOpened, setIsCartOpened] = useState(false);
@@ -42,8 +42,6 @@ const Navbar = () => {
     }
   }, []);
 
-  if (status === "loading") return null;
-  console.log(session);
   return (
     <header className={styles.navbar}>
       <div className={styles.main_header_bar}>
@@ -62,11 +60,17 @@ const Navbar = () => {
         )}
         <span className={styles.logo}>Burgizza</span>
         {!isMobile && (
-          // <Link href="/login" className={styles.login}>
-          <button className={styles.login} onClick={signupWithGoogle}>
-            {session?.user ? "Log Out" : "Log In"}
-          </button>
-          // </Link>
+          <>
+            {loggedIn ? (
+              <button className={styles.login} onClick={signout}>
+                Log Out
+              </button>
+            ) : (
+              <button className={styles.login} onClick={signupWithGoogle}>
+                Log In
+              </button>
+            )}
+          </>
         )}
       </div>
       <nav className={`${styles.collapse_menu} ${openMenu && styles.open}`}>
@@ -87,9 +91,17 @@ const Navbar = () => {
             <Link href="/contact">Contact</Link>
           </li>
           {isMobile && (
-            <li onClick={signupWithGoogle}>
-              {session?.user ? "Log Out" : "Log In"}
-            </li>
+            <>
+              {loggedIn ? (
+                <li className={styles.login} onClick={signout}>
+                  Log Out
+                </li>
+              ) : (
+                <li className={styles.login} onClick={signupWithGoogle}>
+                  Log In
+                </li>
+              )}
+            </>
           )}
           <li className={styles.cart_icon}>
             <button type="button" onClick={toggleCart}>

@@ -16,11 +16,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
   return (
     <html lang="en">
       <Head>
@@ -40,7 +41,7 @@ export default function RootLayout({
       <body>
         <StoreProvider>
           <SessionProvider>
-            <Navbar />
+            <Navbar loggedIn={!!session?.user} />
             {children}
             <Footer />
           </SessionProvider>
